@@ -16,7 +16,7 @@ const List = ({ data }) => {
                         key={index}
                         name={item.name} 
                         imageUrl={item.images[0].url}
-                        owner={item.owner.display_name}
+                        owner={item.owner}
                         tracks={item.tracks.total}
                         external_urls={item.external_urls}
                     />

@@ -1,29 +1,13 @@
 // Global
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 // Components
 import { Input, Dropdown, Grid } from 'semantic-ui-react'
 // Api
-import { getFilters } from 'api';
+import { countries } from "./countries";
 
 const Filters = ({ filters, errors, search, onChange, onSearch }) => {
-    // const [locale, setLocale] = useState();
-    const [countries, setCountries] = useState();
-
-    useEffect(() => {
-        const fetchData = async () => {
-            const response = await getFilters();
-            const data = response.filters;
-
-            // setLocale(data[0]);
-            setCountries(data[1]);
-        }
-
-        void fetchData();
-    }, []);
-
-    // const localeValues = locale ? locale.values.map((local, index) => ({ text: local.name, value: local.value, key: index })) : null;
-    const countryValues = countries ? countries.values.map((country, index) => ({ text: country.name, value: country.value, key: index })) : null;
+    const countryValues = countries.values.map((country, index) => ({ text: country.name, value: country.value, key: index }));
 
     return(
         <Grid className='filters'>
@@ -31,7 +15,7 @@ const Filters = ({ filters, errors, search, onChange, onSearch }) => {
                 <Grid.Column stretched>
                     <Input
                         label='Buscar'
-                        placeholder='Buscar'
+                        placeholder='Nome da Playlist'
                         type='text'
                         icon='search'
                         value={search}
