@@ -18,6 +18,7 @@ const List = ({ data }) => {
                         imageUrl={item.images[0].url}
                         owner={item.owner.display_name}
                         tracks={item.tracks.total}
+                        external_urls={item.external_urls}
                     />
                 )
             })}

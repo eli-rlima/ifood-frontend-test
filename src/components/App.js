@@ -130,7 +130,7 @@ const App = () => {
         <div className='page'>
             <div className='header'>
                 <h1 className='title'>
-                    Spotifood
+                    Spotify - Em Alta
                 </h1>
                 <div className='acessibility-container'>
                     <Button 

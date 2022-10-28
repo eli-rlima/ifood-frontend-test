@@ -2,7 +2,8 @@
     width: 90%;
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-    grid-gap: 20px;
+    grid-column-gap: 150px;
+    grid-row-gap: 30px;
 
-    margin: 3rem 0 3rem 0;
+    margin: 5rem 0 3rem 0;
 }

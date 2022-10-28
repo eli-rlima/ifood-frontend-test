@@ -7,23 +7,23 @@ import { Input, Dropdown, Grid } from 'semantic-ui-react'
 import { getFilters } from 'api';
 
 const Filters = ({ filters, errors, search, onChange, onSearch }) => {
-    const [locale, setLocale] = useState();
-    const [countrys, setCountrys] = useState();
+    // const [locale, setLocale] = useState();
+    const [countries, setCountries] = useState();
 
     useEffect(() => {
-        async function fetchData() {
+        const fetchData = async () => {
             const response = await getFilters();
             const data = response.filters;
 
-            setLocale(data[0]);
-            setCountrys(data[1]);
+            // setLocale(data[0]);
+            setCountries(data[1]);
         }
 
-        fetchData();
+        void fetchData();
     }, []);
 
-    const localeValues = locale ? locale.values.map((local, index) => ({ text: local.name, value: local.value, key: index })) : null;
-    const countryValues = countrys ? countrys.values.map((country, index) => ({ text: country.name, value: country.value, key: index })) : null;
+    // const localeValues = locale ? locale.values.map((local, index) => ({ text: local.name, value: local.value, key: index })) : null;
+    const countryValues = countries ? countries.values.map((country, index) => ({ text: country.name, value: country.value, key: index })) : null;
 
     return(
         <Grid className='filters'>
@@ -41,19 +41,6 @@ const Filters = ({ filters, errors, search, onChange, onSearch }) => {
             </Grid.Row>
             <Grid.Row columns='2' style={{ padding: '1rem 1rem 0 1rem' }}>
                 <Grid.Column>
-                    <label htmlFor='idioma'>Idioma</label>
-                    <Dropdown
-                        id='idioma'
-                        options={localeValues}
-                        onChange={onChange('locale')}
-                        value={filters['locale']}
-                        error={errors['localeError']}
-                        placeholder='Locale'
-                        selection
-                        fluid
-                    />
-                </Grid.Column>
-                <Grid.Column>
                     <label htmlFor='país'>País</label>
                     <Dropdown
                         id='país'
@@ -66,9 +53,7 @@ const Filters = ({ filters, errors, search, onChange, onSearch }) => {
                         fluid
                     />
                 </Grid.Column>
-            </Grid.Row>
-            <Grid.Row columns='1' style={{ padding: '1rem 1rem 0 1rem' }}>
-                <Grid.Column stretched width='16'>
+                <Grid.Column stretched >
                     <label htmlFor='dataEHorario'>Data e Horário</label>
                     <Input
                         id='dataEHorario'
@@ -77,31 +62,6 @@ const Filters = ({ filters, errors, search, onChange, onSearch }) => {
                         value={filters['timestamp']}
                         error={errors['timestampError']}
                         onChange={onChange('timestamp')}
-                    />
-                </Grid.Column>
-            </Grid.Row>
-            <Grid.Row columns='2' style={{ padding: '1rem 1rem 0 1rem' }}>
-                <Grid.Column width='8' stretched>
-                    <label htmlFor='pagina'>Página</label>
-                    <Input
-                        id='pagina'
-                        type='number'
-                        value={filters['offset']}
-                        error={errors['offsetError']}
-                        onChange={onChange('offset')}
-                        min={1}
-                    />
-                </Grid.Column>
-                <Grid.Column width='8' stretched>
-                    <label htmlFor='quantidade'>Quantidade</label>
-                    <Input
-                        id='quantidade'
-                        type='number'
-                        value={filters['limit']}
-                        error={errors['limitError']}
-                        onChange={onChange('limit')}
-                        min={1}
-                        max={50}
                     />
                 </Grid.Column>
             </Grid.Row>
